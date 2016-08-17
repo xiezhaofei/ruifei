@@ -1,0 +1,3 @@
+include ':framework'
+include ':MainApp'
+include ':appcompat_v7'
