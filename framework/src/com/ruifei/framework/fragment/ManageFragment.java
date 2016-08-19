@@ -4,6 +4,8 @@ package com.ruifei.framework.fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.Button;
 
 import com.ruifei.framework.R;
 
@@ -18,7 +20,7 @@ public class ManageFragment extends BaseFragment{
 
     public List<SoftReference<Fragment>> mStacks;
     private static ManageFragment mManageFragment = null;
-
+    private Button button;
     public ManageFragment() {
         init();
     }
@@ -37,10 +39,22 @@ public class ManageFragment extends BaseFragment{
     {
         FragmentManager manager = getChildFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();
-
+        ft.setCustomAnimations(R.anim.fragment_slide_in,R.anim.fragment_slide_out,
+                R.anim.fragment_slide_in,R.anim.fragment_slide_out);
         ft.add(R.id.fragment_container,fragment);
+        //ft.commit();
+        ft.commitAllowingStateLoss();
+    }
+
+    @Override
+    public void initUi() {
+        super.initUi();
 
     }
 
+    @Override
+    public void loadData() {
+        super.loadData();
 
+    }
 }

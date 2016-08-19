@@ -17,18 +17,6 @@ import android.widget.Scroller;
 import com.ruifei.framework.R;
 
 
-/**
- *
- * ClassName:SlideView<br>
- * Function: 一个继承于{@link RelativeLayout}的{@link ViewGroup}，可以侧滑退出。
- *
- * @author chadwii
- * @version
- * @since Ver 1.1
- * @Date 2014 2014-3-21 下午4:12:35
- *
- * @see
- */
 public class SlideView extends RelativeLayout {
 
     private Context mContext;
@@ -303,11 +291,11 @@ public class SlideView extends RelativeLayout {
         if (mainView != null)
             mainView.setVisibility(View.GONE);
 
-        if (mContext instanceof Activity) {
+        /*if (mContext instanceof Activity) {
             if (!((Activity) mContext).isFinishing()) {
                 ((Activity) mContext).finish();
             }
-        }
+        }*/
 
     }
 
