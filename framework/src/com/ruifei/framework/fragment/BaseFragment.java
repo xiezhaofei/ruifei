@@ -1,6 +1,8 @@
 package com.ruifei.framework.fragment;
 
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,14 +20,14 @@ public abstract class BaseFragment extends Fragment {
 
     private boolean canSlide = false;//默认不能侧滑移除
     public Context mContext;
+    private View mContainerView;
     public BaseFragment() {
-        mContext = getActivity().getApplicationContext();
+
     }
 
     public BaseFragment(boolean canSlide)
     {
         this.canSlide = canSlide;
-        mContext = getActivity().getApplicationContext();
     }
 
     public abstract int getContainerLayoutId();
@@ -33,6 +35,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mContext = getActivity().getApplicationContext();
     }
 
     @Override
@@ -87,11 +90,13 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         if(canSlide==true){
-            SlideView slideView = new SlideView(mContext);
-            return inflater.inflate(getContainerLayoutId(),slideView,true);
+            SlideView slideView = new SlideView(getActivity());
+            mContainerView = inflater.inflate(getContainerLayoutId(),slideView,true);
+
         }else{
-            return inflater.inflate(getContainerLayoutId(),null);
+            mContainerView = inflater.inflate(getContainerLayoutId(),null);
         }
+        return mContainerView;
         //return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -103,11 +108,37 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //mContext = getActivity().getApplicationContext();
         initUi();
         loadData();
     }
 
+    public void startFragment(Fragment fragment)
+    {
+        Activity activity = getActivity();
+        if(activity instanceof StartFragmentHelper)
+        {
+            ((StartFragmentHelper) activity).startFragment(fragment);
+        }
+    }
+
     public void initUi(){}
     public void loadData(){}
+
+    public interface StartFragmentHelper
+    {
+        public void startFragment(Fragment fragment);
+    }
+
+    public View findViewById(int id) {
+
+        View view = null;
+        if (mContainerView != null) {
+            view = mContainerView.findViewById(id);
+        }else{
+            view = getActivity().findViewById(id);
+        }
+        return view;
+    }
 
 }
