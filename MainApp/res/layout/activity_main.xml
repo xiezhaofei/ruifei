@@ -19,6 +19,13 @@
         android:layout_height="match_parent">
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/main_container_full"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
     <Button
         android:id="@+id/ceshi"
         android:layout_width="wrap_content"
