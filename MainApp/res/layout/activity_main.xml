@@ -19,25 +19,25 @@
             android:id="@+id/find"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab1_selector"
-            android:text="å‘çŽ°" />
+            android:text="·¢ÏÖ" />
 
         <RadioButton
             android:id="@+id/custom"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab2_selector"
-            android:text="è®¢é˜…å¬" />
+            android:text="¶©ÔÄÌý" />
 
         <RadioButton
             android:id="@+id/download"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab3_selector"
-            android:text="ä¸‹è½½å¬" />
+            android:text="ÏÂÔØÌý" />
 
         <RadioButton
             android:id="@+id/myspace"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab4_selector"
-            android:text="æˆ‘çš„" />
+            android:text="ÎÒµÄ" />
     </RadioGroup>
 
     <FrameLayout
