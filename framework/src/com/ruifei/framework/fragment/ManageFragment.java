@@ -11,6 +11,7 @@ import com.ruifei.framework.R;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -42,8 +43,30 @@ public class ManageFragment extends BaseFragment{
         ft.setCustomAnimations(R.anim.fragment_slide_in,R.anim.fragment_slide_out,
                 R.anim.fragment_slide_in,R.anim.fragment_slide_out);
         ft.add(R.id.fragment_container,fragment);
-        //ft.commit();
+        mStacks.add(new SoftReference<Fragment>(fragment));
         ft.commitAllowingStateLoss();
+    }
+
+    public void startFragmentAndClearStack(Fragment fragment)
+    {
+        FragmentManager manager = getChildFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        /*ft.setCustomAnimations(R.anim.fragment_slide_in,R.anim.fragment_slide_out,
+                R.anim.fragment_slide_in,R.anim.fragment_slide_out);*/
+        ft.replace(R.id.fragment_container,fragment);
+        ft.commitAllowingStateLoss();
+        clearStack();
+    }
+
+    public void clearStack()
+    {
+        Iterator<SoftReference<Fragment>> iterator = mStacks.iterator();
+        while (iterator.hasNext())
+        {
+            SoftReference<Fragment> softFra = iterator.next();
+            iterator.remove();
+        }
+        if(mStacks==null)mStacks = new ArrayList<SoftReference<Fragment>>();
     }
 
     @Override
@@ -55,6 +78,5 @@ public class ManageFragment extends BaseFragment{
     @Override
     public void loadData() {
         super.loadData();
-
     }
 }

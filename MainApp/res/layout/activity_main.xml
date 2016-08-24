@@ -3,21 +3,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    
-    <include
+
+
+
+    <RadioGroup
+        android:id="@+id/main_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:paddingTop="0dp" >
+
+        <RadioButton
+            android:id="@+id/find"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab1_selector"
+            android:text="发现" />
+
+        <RadioButton
+            android:id="@+id/custom"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab2_selector"
+            android:text="订阅听" />
+
+        <RadioButton
+            android:id="@+id/download"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab3_selector"
+            android:text="下载听" />
+
+        <RadioButton
+            android:id="@+id/myspace"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab4_selector"
+            android:text="我的" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/bg_tab_gradient" />
+
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_above="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/full_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+
+    <!--<include
         android:id="@+id/main_tab"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         layout="@layout/main_bottom_tab"
         android:layout_alignParentBottom="true"
-        />
+        />-->
 
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_above="@+id/main_tab"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+
 
     <Button
         android:id="@+id/ceshi"
