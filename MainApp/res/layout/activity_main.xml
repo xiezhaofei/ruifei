@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     >
 
-
-
     <RadioGroup
         android:id="@+id/main_tab"
         android:layout_width="match_parent"
@@ -19,25 +17,25 @@
             android:id="@+id/find"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab1_selector"
-            android:text="发现" />
+            android:text="@string/tab1" />
 
         <RadioButton
             android:id="@+id/custom"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab2_selector"
-            android:text="订阅听" />
+            android:text="@string/tab2" />
 
         <RadioButton
             android:id="@+id/download"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab3_selector"
-            android:text="下载听" />
+            android:text="@string/tab3" />
 
         <RadioButton
             android:id="@+id/myspace"
             style="@style/MainTabStyle"
             android:drawableTop="@drawable/tab4_selector"
-            android:text="我的" />
+            android:text="@string/tab4" />
     </RadioGroup>
 
     <FrameLayout

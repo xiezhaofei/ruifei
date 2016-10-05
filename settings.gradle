@@ -1,3 +1,4 @@
-include ':framework'
 include ':MainApp'
-include ':appcompat_v7'
+include ':xAndroidFramework:framework'
+include ':xAndroidFramework:PagerSlidingTabStrip'
+include ':xAndroidFramework:PullToRefresh'

@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MainApp/MainApp.iml" filepath="$PROJECT_DIR$/MainApp/MainApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" filepath="$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xAndroidFramework/PagerSlidingTabStrip/PagerSlidingTabStrip.iml" filepath="$PROJECT_DIR$/xAndroidFramework/PagerSlidingTabStrip/PagerSlidingTabStrip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xAndroidFramework/PullToRefresh/PullToRefresh.iml" filepath="$PROJECT_DIR$/xAndroidFramework/PullToRefresh/PullToRefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/ruifei.iml" filepath="$PROJECT_DIR$/ruifei.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xAndroidFramework/xAndroidFramework.iml" filepath="$PROJECT_DIR$/xAndroidFramework/xAndroidFramework.iml" />
     </modules>
   </component>
 </project>

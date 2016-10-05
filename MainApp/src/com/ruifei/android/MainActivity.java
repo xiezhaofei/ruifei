@@ -1,10 +1,8 @@
 package com.ruifei.android;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-;
-import android.os.Bundle;
-
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -12,16 +10,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-
-import com.ruifei.android.fragment.ClassifyFragment;
-import com.ruifei.android.fragment.FindFragment;
-import com.ruifei.android.fragment.MySpaceFragment;
-import com.ruifei.android.fragment.ShareFragment;
+import com.ruifei.android.fragment.tab1.FindFragment;
+import com.ruifei.android.fragment.tab4.MySpaceFragment;
+import com.ruifei.android.fragment.tab3.ShareFragment;
 import com.ruifei.framework.fragment.BaseFragment;
 import com.ruifei.framework.fragment.ManageFragment;
 
 import test.TestFragemt1;
-import test.TestFragment2;
+
+;
 
 public class MainActivity extends FragmentActivity implements BaseFragment.StartFragmentHelper,
         RadioGroup.OnCheckedChangeListener
@@ -38,7 +35,7 @@ public class MainActivity extends FragmentActivity implements BaseFragment.Start
         setContentView(R.layout.activity_main);
         mRadioGroup = (RadioGroup)findViewById(R.id.main_tab);
         mRadioGroup.setOnCheckedChangeListener(this);
-
+        mRadioGroup.check(R.id.find);
 
         manageFragment = new ManageFragment();
         getSupportFragmentManager().beginTransaction()

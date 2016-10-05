@@ -9,16 +9,20 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MainApp" />
-            <option value="$PROJECT_DIR$/appcompat_v7" />
-            <option value="$PROJECT_DIR$/framework" />
+            <option value="$PROJECT_DIR$/xAndroidFramework" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/PagerSlidingTabStrip" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/PullToRefresh" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/framework" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MainApp" />
-            <option value="$PROJECT_DIR$/appcompat_v7" />
-            <option value="$PROJECT_DIR$/framework" />
+            <option value="$PROJECT_DIR$/xAndroidFramework" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/PagerSlidingTabStrip" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/PullToRefresh" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/framework" />
           </set>
         </option>
       </GradleProjectSettings>

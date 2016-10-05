@@ -2,8 +2,13 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':appcompat_v7')
-    compile project(':framework')
+    //    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile('com.android.support:appcompat-v7:23.3.0') {
+        exclude group: "com.android.support", module: "support-v4"
+    }
+    compile project(':xAndroidFramework:framework')
+    compile project(':xAndroidFramework:PagerSlidingTabStrip')
+    compile project(':xAndroidFramework:PullToRefresh')
 }
 
 android {
@@ -32,5 +37,13 @@ android {
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
+    }
+
+    defaultConfig{
+        multiDexEnabled = true
+    }
+
+    dexOptions{
+        preDexLibraries = false
     }
 }
