@@ -9,6 +9,7 @@ dependencies {
     compile project(':xAndroidFramework:framework')
     compile project(':xAndroidFramework:PagerSlidingTabStrip')
     compile project(':xAndroidFramework:PullToRefresh')
+    compile project(':xAndroidFramework:MagicViewPager')
 }
 
 android {

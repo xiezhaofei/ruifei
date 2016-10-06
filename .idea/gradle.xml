@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MainApp" />
             <option value="$PROJECT_DIR$/xAndroidFramework" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/MagicViewPager" />
             <option value="$PROJECT_DIR$/xAndroidFramework/PagerSlidingTabStrip" />
             <option value="$PROJECT_DIR$/xAndroidFramework/PullToRefresh" />
             <option value="$PROJECT_DIR$/xAndroidFramework/framework" />
@@ -20,6 +21,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MainApp" />
             <option value="$PROJECT_DIR$/xAndroidFramework" />
+            <option value="$PROJECT_DIR$/xAndroidFramework/MagicViewPager" />
             <option value="$PROJECT_DIR$/xAndroidFramework/PagerSlidingTabStrip" />
             <option value="$PROJECT_DIR$/xAndroidFramework/PullToRefresh" />
             <option value="$PROJECT_DIR$/xAndroidFramework/framework" />

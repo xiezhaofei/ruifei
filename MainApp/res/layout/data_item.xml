@@ -9,6 +9,7 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
         android:layout_margin="8dp"
         android:src="@drawable/timg" />
 
@@ -20,6 +21,10 @@
         android:layout_toRightOf="@id/pic"
         android:layout_alignBottom="@id/pic"
         android:textColor="#000000"
+        android:textSize="15sp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:width="300dp"
         android:text="sig" />
 
     <TextView
@@ -27,11 +32,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/pic"
-        android:layout_above="@id/sig"
+        android:layout_alignTop="@+id/pic"
+        android:layout_marginTop="5dp"
         android:textColor="#000000"
         android:ellipsize="end"
         android:singleLine="true"
         android:width="200dp"
+        android:textSize="15sp"
         android:text="title" />
 
 

@@ -1,10 +1,15 @@
 package com.ruifei.android.fragment.tab1.child;
 
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.ILoadingLayout;
@@ -13,6 +18,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ruifei.android.R;
 import com.ruifei.android.data.source.PullData;
 import com.ruifei.framework.fragment.BaseFragment;
+import com.zhy.magicviewpager.transformer.RotateYTransformer;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,25 +31,31 @@ public class RecommendFragment extends BaseFragment {
     private PullToRefreshListView pullToRefresh;
     private myAdapter adapter;
     private List<PullData> dataSource;
-
+    private View headView;
+    private View footView;
+    private ViewPager mViewPager;
+    private FrameLayout container;
+    private myViewPagerAdapter viewPagerAdapter;
+    private List<View> data;
     @Override
     public void initUi() {
         pullToRefresh = (PullToRefreshListView)findViewById(R.id.listview);
-        dataSource = new LinkedList<PullData>();
-        for(int i=0;i<5;i++){
-            PullData data = new PullData("ruifeitec","android technology",R.drawable.reifeilog);
-            dataSource.add(data);
-        }
-        adapter = new myAdapter(dataSource);
-
+        initData();
         super.initUi();
     }
 
     @Override
     public void loadData() {
+        adapter = new myAdapter(dataSource);
         pullToRefresh.setAdapter(adapter);
         pullToRefresh.setMode(PullToRefreshBase.Mode.BOTH);
         init();
+        pullToRefresh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
         super.loadData();
     }
 
@@ -112,21 +124,75 @@ public class RecommendFragment extends BaseFragment {
         endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
         endLabels.setRefreshingLabel("正在载入...");// 刷新时
         endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
-
-//      // 设置下拉刷新文本
-//      pullToRefresh.getLoadingLayoutProxy(false, true)
-//              .setPullLabel("上拉刷新...");
-//      pullToRefresh.getLoadingLayoutProxy(false, true).setReleaseLabel(
-//              "放开刷新...");
-//      pullToRefresh.getLoadingLayoutProxy(false, true).setRefreshingLabel(
-//              "正在加载...");
-//      // 设置上拉刷新文本
-//      pullToRefresh.getLoadingLayoutProxy(true, false)
-//              .setPullLabel("下拉刷新...");
-//      pullToRefresh.getLoadingLayoutProxy(true, false).setReleaseLabel(
-//              "放开刷新...");
-//      pullToRefresh.getLoadingLayoutProxy(true, false).setRefreshingLabel(
-//              "正在加载...");
     }
+
+    private void initData()
+    {
+        dataSource = new LinkedList<PullData>();
+        int[] pic = new int[]{R.drawable.img1,R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5};
+        String[] title = new String[]{"刘德华","张学友","郭富城","周星驰","梁朝伟"};
+        String[] sig = new String[]{"真理惟一可靠的标准就是永远自相符合。",
+                "时间是一切财富中最宝贵的财富",
+                "真正的科学家应当是个幻想家；谁不是幻想家，谁就只能把自己称为实践家。",
+                "人生并不像火车要通过每个站似的经过每一个生活阶段。人生总是直向前行走，从不留下什么。",
+                "爱情只有当它是自由自在时，才会叶茂花繁。认为爱情是某种义务的思想只能置爱情于死地。只消一句话：你应当爱某个人，就足以使你对这个人恨之入骨。"};
+
+        for(int i=0;i<5;i++){
+            PullData data = new PullData(title[i],sig[i],pic[i]);
+            dataSource.add(data);
+        }
+
+        headView = LinearLayout.inflate(getContext(),R.layout.container_lay,null);
+        container = (FrameLayout) headView.findViewById(R.id.pager_lay);
+        mViewPager = new ViewPager(mContext);
+        data = new LinkedList<View>();
+        for(int i=0;i<5;i++){
+            ImageView iv = new ImageView(mContext);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            iv.setImageResource(pic[i]);
+            data.add(iv);
+        }
+        viewPagerAdapter = new myViewPagerAdapter(data);
+        mViewPager.setAdapter(viewPagerAdapter);
+        mViewPager.setCurrentItem(2);
+        mViewPager.setPageMargin(40);
+        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setPageTransformer(true, new RotateYTransformer(45));
+        container.addView(mViewPager);
+        ListView listView = pullToRefresh.getRefreshableView();
+        listView.addHeaderView(headView);
+
+    }
+
+    private class myViewPagerAdapter extends PagerAdapter
+    {
+        List<View> data;
+        public myViewPagerAdapter(List<View> data)
+        {
+            this.data = data;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            ((ViewPager) container).removeView(data.get(position));
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ((ViewPager) container).addView(data.get(position), 0);
+            return data.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+    }
+
 
 }

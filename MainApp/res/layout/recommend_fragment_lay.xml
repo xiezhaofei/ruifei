@@ -9,7 +9,11 @@
         ptr:ptrAnimationStyle="flip"
         ptr:ptrHeaderBackground="#383838"
         ptr:ptrHeaderTextColor="#FFFFFF"
-        android:id="@+id/listview"
+        android:dividerHeight="8dp"
+        android:divider="#d9d0d0"
+        android:headerDividersEnabled = "false"
+        android:scrollbars = "none"
+        android:id = "@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
