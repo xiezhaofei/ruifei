@@ -4,6 +4,7 @@ package com.ruifei.framework.fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,9 +23,11 @@ public class ManageFragment extends BaseFragment{
     public List<SoftReference<Fragment>> mStacks;
     private static ManageFragment mManageFragment = null;
     private Button button;
+
     public ManageFragment() {
         init();
     }
+
 
     private void init()
     {
@@ -56,6 +59,7 @@ public class ManageFragment extends BaseFragment{
         ft.replace(R.id.fragment_container,fragment);
         ft.commitAllowingStateLoss();
         clearStack();
+        mStacks.add(new SoftReference<Fragment>(fragment));
     }
 
     public void clearStack()
@@ -72,8 +76,42 @@ public class ManageFragment extends BaseFragment{
     @Override
     public void initUi() {
         super.initUi();
-
     }
+
+    //提供类似于返回键的返回功能.
+    public boolean onBackPress()
+    {
+        Log.i("xzf","mStacks size:"+mStacks.size());
+
+        if(mStacks.size()>0){
+            Fragment f = mStacks.get(mStacks.size()-1).get();
+            mStacks.remove(mStacks.size()-1);
+            FragmentManager fm = getChildFragmentManager();
+            fm.beginTransaction().setCustomAnimations(R.anim.fragment_slide_in,R.anim.fragment_slide_out,
+                    R.anim.fragment_slide_in,R.anim.fragment_slide_out)
+                    .remove(f).commitAllowingStateLoss();
+            if(mStacks.size()>0) {
+                return showTopFragment();
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public boolean showTopFragment()
+    {
+        if(mStacks.get(mStacks.size()-1) != null) {
+            Fragment f = mStacks.get(mStacks.size()-1).get();
+            FragmentManager fm = getChildFragmentManager();
+            fm.beginTransaction().show(f).commit();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     @Override
     public void loadData() {

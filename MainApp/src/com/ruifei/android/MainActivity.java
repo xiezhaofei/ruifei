@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -18,14 +19,13 @@ import com.ruifei.framework.fragment.ManageFragment;
 
 import test.TestFragemt1;
 
-;
 
 public class MainActivity extends FragmentActivity implements BaseFragment.StartFragmentHelper,
         RadioGroup.OnCheckedChangeListener
 {
 
     private Button button;
-    private ManageFragment manageFragment;
+    private ManageFragment mManageFragment;
     private RadioGroup mRadioGroup;
 
     @Override
@@ -37,9 +37,9 @@ public class MainActivity extends FragmentActivity implements BaseFragment.Start
         mRadioGroup.setOnCheckedChangeListener(this);
         mRadioGroup.check(R.id.find);
 
-        manageFragment = new ManageFragment();
+        mManageFragment = new ManageFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.full_fragment_container,manageFragment)
+                .replace(R.id.full_fragment_container,mManageFragment)
                 .commit();
         button = (Button)findViewById(R.id.ceshi);
         button.setOnClickListener(new View.OnClickListener() {
@@ -54,20 +54,30 @@ public class MainActivity extends FragmentActivity implements BaseFragment.Start
 
     @Override
     public void startFragment(Fragment fragment) {
-        if(manageFragment != null)
+        if(mManageFragment != null)
         {
-            manageFragment.startFragment(fragment);
+            mManageFragment.startFragment(fragment);
         }
     }
+
+
 
     public void startFragmentAndClearStack(Fragment fragment){
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();
         ft.replace(R.id.main_container,fragment);
         ft.commit();
-        /*if(manageFragment != null){
-            manageFragment.startFragmentAndClearStack(fragment);
+        /*if(mManageFragment != null){
+            mManageFragment.startFragmentAndClearStack(fragment);
         }*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!mManageFragment.onBackPress()) {
+            Log.i("xzf","执行系统onbackpress!!");
+            super.onBackPressed();
+        }
     }
 
     @Override

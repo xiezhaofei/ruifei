@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.ruifei.framework.view.SlideView;
 
+import java.lang.reflect.Field;
+
 /**
  * Created by Administrator on 2016/8/15.
  */
@@ -80,11 +82,6 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -139,6 +136,20 @@ public abstract class BaseFragment extends Fragment {
             view = getActivity().findViewById(id);
         }
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        try {
+            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+            childFragmentManager.setAccessible(true);
+            childFragmentManager.set(this, null);
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
