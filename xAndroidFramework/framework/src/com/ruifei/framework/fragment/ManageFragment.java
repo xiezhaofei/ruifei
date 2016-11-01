@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.ruifei.framework.R;
+import com.ruifei.framework.view.SlideView;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/15.
  */
-public class ManageFragment extends BaseFragment{
+public class ManageFragment extends BaseFragment implements SlideView.IOnFinishListener{
 
     public List<SoftReference<Fragment>> mStacks;
     private static ManageFragment mManageFragment = null;
@@ -82,14 +83,8 @@ public class ManageFragment extends BaseFragment{
     public boolean onBackPress()
     {
         Log.i("xzf","mStacks size:"+mStacks.size());
-
         if(mStacks.size()>0){
-            Fragment f = mStacks.get(mStacks.size()-1).get();
-            mStacks.remove(mStacks.size()-1);
-            FragmentManager fm = getChildFragmentManager();
-            fm.beginTransaction().setCustomAnimations(R.anim.fragment_slide_in,R.anim.fragment_slide_out,
-                    R.anim.fragment_slide_in,R.anim.fragment_slide_out)
-                    .remove(f).commitAllowingStateLoss();
+            removeTopFragment();
             if(mStacks.size()>0) {
                 return showTopFragment();
             }else{
@@ -100,8 +95,24 @@ public class ManageFragment extends BaseFragment{
         }
     }
 
+    public void removeTopFragment()
+    {
+        Fragment f = mStacks.get(mStacks.size()-1).get();
+        mStacks.remove(mStacks.size()-1);
+        FragmentManager fm = getChildFragmentManager();
+        fm.beginTransaction().setCustomAnimations(R.anim.fragment_slide_in,R.anim.fragment_slide_out,
+                R.anim.fragment_slide_in,R.anim.fragment_slide_out)
+                .remove(f).commitAllowingStateLoss();
+    }
+
+    public void removeStackTop()
+    {
+        mStacks.remove(mStacks.size()-1);
+    }
+
     public boolean showTopFragment()
     {
+        if(mStacks.size() == 0)return false;
         if(mStacks.get(mStacks.size()-1) != null) {
             Fragment f = mStacks.get(mStacks.size()-1).get();
             FragmentManager fm = getChildFragmentManager();
@@ -112,9 +123,16 @@ public class ManageFragment extends BaseFragment{
         }
     }
 
-
     @Override
     public void loadData() {
         super.loadData();
+    }
+
+    @Override
+    public boolean onFinish() {
+        Log.i("xzf","on finish");
+        removeTopFragment();
+        showTopFragment();
+        return true;
     }
 }

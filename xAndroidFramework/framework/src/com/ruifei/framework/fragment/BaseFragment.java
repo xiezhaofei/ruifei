@@ -18,13 +18,12 @@ import java.lang.reflect.Field;
 /**
  * Created by Administrator on 2016/8/15.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment{
 
     private boolean canSlide = false;//默认不能侧滑移除
     public Context mContext;
     private View mContainerView;
     public BaseFragment() {
-
     }
 
     public BaseFragment(boolean canSlide)
@@ -45,25 +44,6 @@ public abstract class BaseFragment extends Fragment {
         return super.getContext();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 
     @Override
     public void onLowMemory() {
@@ -88,6 +68,10 @@ public abstract class BaseFragment extends Fragment {
 
         if(canSlide==true){
             SlideView slideView = new SlideView(getActivity());
+            if(getActivity() instanceof IBaseFragmentHelper){
+                ManageFragment mf = ((IBaseFragmentHelper) getActivity()).getManageFragment();
+                slideView.setOnFinishListener(mf);
+            }
             mContainerView = inflater.inflate(getContainerLayoutId(),slideView,true);
 
         }else{
@@ -113,23 +97,26 @@ public abstract class BaseFragment extends Fragment {
     public void startFragment(Fragment fragment)
     {
         Activity activity = getActivity();
-        if(activity instanceof StartFragmentHelper)
+        if(activity instanceof IBaseFragmentHelper)
         {
-            ((StartFragmentHelper) activity).startFragment(fragment);
+            ((IBaseFragmentHelper) activity).startFragment(fragment);
         }
     }
 
     public void initUi(){}
     public void loadData(){}
 
-    public interface StartFragmentHelper
+    public interface IBaseFragmentHelper
     {
-        public void startFragment(Fragment fragment);
+        void removeStackTop();
+        void removeTopFragment();
+        ManageFragment getManageFragment();
+        void startFragment(Fragment fragment);
     }
 
     public View findViewById(int id) {
 
-        View view = null;
+        View view ;
         if (mContainerView != null) {
             view = mContainerView.findViewById(id);
         }else{

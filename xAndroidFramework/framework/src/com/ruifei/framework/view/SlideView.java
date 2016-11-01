@@ -323,13 +323,7 @@ public class SlideView extends RelativeLayout {
 
     public interface IOnFinishListener {
         /**
-         *
          * onFinish:This method will be call when the view is out of screen
-         *
-         * @param @return 设定文件
-         * @return boolean return true represent the finish event is consume
-         * @throws
-         * @since CodingExample　Ver 1.1
          */
         public boolean onFinish();
     }

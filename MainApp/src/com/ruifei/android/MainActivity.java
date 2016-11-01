@@ -20,7 +20,7 @@ import com.ruifei.framework.fragment.ManageFragment;
 import test.TestFragemt1;
 
 
-public class MainActivity extends FragmentActivity implements BaseFragment.StartFragmentHelper,
+public class MainActivity extends FragmentActivity implements BaseFragment.IBaseFragmentHelper,
         RadioGroup.OnCheckedChangeListener
 {
 
@@ -53,10 +53,32 @@ public class MainActivity extends FragmentActivity implements BaseFragment.Start
 
 
     @Override
+    public ManageFragment getManageFragment() {
+        return mManageFragment;
+    }
+
+    @Override
     public void startFragment(Fragment fragment) {
         if(mManageFragment != null)
         {
             mManageFragment.startFragment(fragment);
+        }
+    }
+
+    @Override
+    public void removeTopFragment()
+    {
+        if(mManageFragment != null){
+            mManageFragment.removeTopFragment();
+        }
+    }
+
+    @Override
+    public void removeStackTop()
+    {
+        if(mManageFragment != null)
+        {
+            mManageFragment.removeStackTop();
         }
     }
 
