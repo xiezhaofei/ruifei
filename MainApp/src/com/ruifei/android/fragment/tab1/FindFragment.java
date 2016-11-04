@@ -69,7 +69,6 @@ public class FindFragment extends BaseFragment {
 
         @Override
         public int getCount() {
-
             return title.length;
         }
 
