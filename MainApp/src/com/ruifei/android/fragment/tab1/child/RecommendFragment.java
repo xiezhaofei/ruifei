@@ -129,15 +129,19 @@ public class RecommendFragment extends BaseFragment {
     private void initData()
     {
         dataSource = new LinkedList<PullData>();
-        int[] pic = new int[]{R.drawable.img1,R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5};
-        String[] title = new String[]{"刘德华","张学友","郭富城","周星驰","梁朝伟"};
+        int[] pic = new int[]{R.drawable.img1,R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5,R.drawable.img1,R.drawable.img2,R.drawable.img3,R.drawable.img4};
+        String[] title = new String[]{"刘德华","张学友","郭富城","周星驰","梁朝伟","张学友","郭富城","周星驰","梁朝伟"};
         String[] sig = new String[]{"真理惟一可靠的标准就是永远自相符合。",
+                "时间是一切财富中最宝贵的财富",
+                "真正的科学家应当是个幻想家；谁不是幻想家，谁就只能把自己称为实践家。",
+                "人生并不像火车要通过每个站似的经过每一个生活阶段。人生总是直向前行走，从不留下什么。",
+                "爱情只有当它是自由自在时，才会叶茂花繁。认为爱情是某种义务的思想只能置爱情于死地。只消一句话：你应当爱某个人，就足以使你对这个人恨之入骨。",
                 "时间是一切财富中最宝贵的财富",
                 "真正的科学家应当是个幻想家；谁不是幻想家，谁就只能把自己称为实践家。",
                 "人生并不像火车要通过每个站似的经过每一个生活阶段。人生总是直向前行走，从不留下什么。",
                 "爱情只有当它是自由自在时，才会叶茂花繁。认为爱情是某种义务的思想只能置爱情于死地。只消一句话：你应当爱某个人，就足以使你对这个人恨之入骨。"};
 
-        for(int i=0;i<5;i++){
+        for(int i=0;i<9;i++){
             PullData data = new PullData(title[i],sig[i],pic[i]);
             dataSource.add(data);
         }

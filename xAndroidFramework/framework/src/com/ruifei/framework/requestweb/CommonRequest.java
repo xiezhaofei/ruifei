@@ -39,6 +39,7 @@ public class CommonRequest {
         }
     }
 
+    //
     private static void baseAsychGet(String url,Map<String,String> params,Callback callback)
     {
         Request.Builder builder = new Request.Builder()
@@ -48,6 +49,5 @@ public class CommonRequest {
         Call call = new OkHttpClient().newCall(request);
         call.enqueue(callback);
     }
-
 
 }
