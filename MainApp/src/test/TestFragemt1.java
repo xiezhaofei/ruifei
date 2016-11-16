@@ -3,7 +3,7 @@ package test;
 import android.view.View;
 import android.widget.Button;
 
-import com.ruifei.android.R;
+import com.ruifei.technology.android.R;
 import com.ruifei.framework.fragment.BaseFragment;
 
 /**

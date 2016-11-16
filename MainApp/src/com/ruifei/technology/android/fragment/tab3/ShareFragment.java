@@ -1,4 +1,4 @@
-package com.ruifei.android.fragment.tab3;
+package com.ruifei.technology.android.fragment.tab3;
 
 import android.os.Message;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.ruifei.android.R;
+import com.ruifei.technology.android.R;
 import com.ruifei.framework.fragment.BaseFragment;
 
 import java.io.BufferedReader;

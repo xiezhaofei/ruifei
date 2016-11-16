@@ -1,6 +1,6 @@
 package test;
 
-import com.ruifei.android.R;
+import com.ruifei.technology.android.R;
 import com.ruifei.framework.fragment.BaseFragment;
 
 /**
